@@ -1,20 +1,10 @@
 import React, {Component} from 'react';
-import {
-  Container,
-  Header,
-  Content,
-  List,
-  ListItem,
-  Thumbnail,
-  Text,
-  Left,
-  Body,
-  Right,
-  Button,
-} from 'native-base';
+import {Container, Content, List, Text} from 'native-base';
 import {getArticles} from '../../fetch/news';
 import DataItem from '../../component/dataItem';
 import {Alert, View, ActivityIndicator} from 'react-native'; //to show loader animation while loading
+import Modal from '../../component/modal';
+
 export default class ListThumbnailExample extends Component {
   constructor(props) {
     super(props);
@@ -22,10 +12,25 @@ export default class ListThumbnailExample extends Component {
     this.state = {
       isLoading: true,
       data: null, //first setting data to null on loading
-      setModalVisible: false,
-      modalArticleData: {},
+      setModalVisible: false, //handling modal visibility
+      modalArticleData: {}, //state to fecth particular data
     };
   }
+
+  //checks and handles data accordingly when view news is pressed
+  handleItemDataOnPress = articleData => {
+    this.setState({
+      setModalVisible: true,
+      modalArticleData: articleData, //passing data on this function
+    });
+  };
+
+  handleModalClose = () => {
+    this.setState({
+      setModalVisible: false, // false set as we requested to close the modal
+      modalArticleData: {}, //free modalarticleData as well
+    });
+  };
 
   componentDidMount() {
     //fetching news data here
@@ -55,7 +60,7 @@ export default class ListThumbnailExample extends Component {
         dataArray={this.state.data} //nativebase data array property, and render row property
         renderRow={item => {
           //for each item it returns data item
-          return <DataItem data={item} />;
+          return <DataItem onPress={this.handleItemDataOnPress} data={item} />;
         }}
         keyExtractor={(_item, index) => index.toString()} //key extractor,for each item
       />
@@ -64,6 +69,11 @@ export default class ListThumbnailExample extends Component {
     return (
       <Container>
         <Content>{view}</Content>
+        <Modal //we will pass these props to modal.js file
+          showModal={this.state.setModalVisible}
+          articleData={this.state.modalArticleData}
+          onClose={this.handleModalClose}
+        />
       </Container>
     );
   }

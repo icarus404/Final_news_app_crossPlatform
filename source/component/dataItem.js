@@ -19,7 +19,7 @@ export default class DataItem extends Component {
 
   handlePress = () => {
     const {url, title} = this.data;
-    this.props.onPress({url, title});
+    this.props.onPress({url, title}); //calling onpress function from tab1
   };
 
   render() {
@@ -53,7 +53,7 @@ export default class DataItem extends Component {
           </View>
         </Body>
         <Right>
-          <Button transparent>
+          <Button transparent onPress={this.handlePress}>
             <Text>View</Text>
           </Button>
         </Right>
