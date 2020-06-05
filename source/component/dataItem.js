@@ -9,7 +9,7 @@ import {
   Text,
   Button,
 } from 'native-base';
-
+import TimeAgo from './time'; //importing time component
 //new data item class,renders in list view
 export default class DataItem extends Component {
   constructor(props) {
@@ -41,6 +41,16 @@ export default class DataItem extends Component {
           <Text note numberOfLines={2}>
             {this.data.description}
           </Text>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              marginTop: 8,
+              marginLeft: 0,
+            }}>
+            <Text note>{this.data.source.name}</Text>
+            <TimeAgo time={this.data.publishedAt} />
+          </View>
         </Body>
         <Right>
           <Button transparent>
