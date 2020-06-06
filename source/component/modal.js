@@ -29,11 +29,9 @@ class ModalComponent extends Component {
   handleShare = () => {
     //share button
     const {url, title} = this.props.articleData; //grab url and title from props and article data
+
     message = `${title}\n\nRead More @${url}\n\nShared via Lite News App`; //compose message
-    return Share.share(
-      {title, message, url: message},
-      {dialogTitle: `Share ${title}`},
-    );
+    return Share.share();
   };
 
   render() {
@@ -70,7 +68,9 @@ class ModalComponent extends Component {
                 style={{flex: 1}}
                 onError={this.handleClose}
                 startInLoadingState
-                scalesPageToFit //scales the modal properly within viewport
+                //scalesPageToFit //scales the modal properly within viewport
+                scalesPageToFit={true}
+                scrollEnabled={true}
               />
             </Content>
           </Container>
