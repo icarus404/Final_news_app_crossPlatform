@@ -17,7 +17,6 @@ export default class ListThumbnailExample extends Component {
     };
   }
 
-  //checks and handles data accordingly when view news is pressed
   handleItemDataOnPress = articleData => {
     this.setState({
       setModalVisible: true,
@@ -33,7 +32,6 @@ export default class ListThumbnailExample extends Component {
   };
 
   componentDidMount() {
-    //fetching news data here
     getArticles().then(
       data => {
         this.setState({
