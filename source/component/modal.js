@@ -1,6 +1,6 @@
 //importing libraries
 import React, {Component} from 'react';
-import {Dimensions, Modal, Share} from 'react-native';
+import {Modal, Share, message} from 'react-native';
 import {
   Container,
   Header,
@@ -14,8 +14,6 @@ import {
 } from 'native-base';
 import {WebView} from 'react-native-webview';
 
-const webViewHeight = Dimensions.get('window').height - 56;
-
 // creating a new component
 class ModalComponent extends Component {
   constructor(props) {
@@ -27,11 +25,12 @@ class ModalComponent extends Component {
   };
 
   handleShare = () => {
-    //share button
-    const {url, title} = this.props.articleData; //grab url and title from props and article data
-
-    message = `${title}\n\nRead More @${url}\n\nShared via Lite News App`; //compose message
-    return Share.share();
+    const {url, title} = this.props.articleData;
+    message = `${title}\n\nRead More @${url}\n\nShared via Lite News App`;
+    return Share.share(
+      {title, message, url: message},
+      {dialogTitle: `Share ${title}`},
+    );
   };
 
   render() {
@@ -47,7 +46,7 @@ class ModalComponent extends Component {
           onRequestClose={this.handleClose}>
           <Container
             style={{margin: 15, marginBottom: 0, backgroundColor: '#fff'}}>
-            <Header style={{backgroundColor: '#009387'}}>
+            <Header style={{backgroundColor: '#233B9C'}}>
               <Left>
                 <Button onPress={this.handleClose} transparent>
                   <Icon name="close" style={{color: 'white', fontSize: 12}} />
@@ -62,14 +61,13 @@ class ModalComponent extends Component {
                 </Button>
               </Right>
             </Header>
-            <Content contentContainerStyle={{height: webViewHeight}}>
+            <Content contentContainerStyle={{flex: 1}}>
               <WebView
                 source={{uri: url}} //this url from article data
-                style={{flex: 1}}
                 onError={this.handleClose}
                 startInLoadingState
-                //scalesPageToFit //scales the modal properly within viewport
-                scalesPageToFit={true}
+                scalesPageToFit //scales the modal properly within viewport
+                //scalesPageToFit={true}
                 scrollEnabled={true}
               />
             </Content>
