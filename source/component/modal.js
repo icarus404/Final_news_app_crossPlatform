@@ -1,6 +1,6 @@
 //importing libraries
 import React, {Component} from 'react';
-import {Modal, Share, message} from 'react-native';
+import {Modal, Share} from 'react-native';
 import {
   Container,
   Header,
@@ -13,6 +13,7 @@ import {
   Button,
 } from 'native-base';
 import {WebView} from 'react-native-webview';
+//import Share from 'react-native-share';  
 
 // creating a new component
 class ModalComponent extends Component {
@@ -26,7 +27,7 @@ class ModalComponent extends Component {
 
   handleShare = () => {
     const {url, title} = this.props.articleData;
-    message = `${title}\n\nRead More @${url}\n\nShared via Lite News App`;
+    const message = `${title}\n\nRead More @${url}\n\nShared via Lite News App`;
     return Share.share(
       {title, message, url: message},
       {dialogTitle: `Share ${title}`},
