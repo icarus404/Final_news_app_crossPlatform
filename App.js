@@ -10,7 +10,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const Drawer = createDrawerNavigator();
 const HomeStack = createStackNavigator();
+const NoteStack = createStackNavigator();
 const HomeStackScreen = ({navigation}) => (
+  //tabscreen component
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
@@ -19,6 +21,7 @@ const HomeStackScreen = ({navigation}) => (
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
+        textAlign: 'center',
       },
     }}>
     <HomeStack.Screen
@@ -38,13 +41,43 @@ const HomeStackScreen = ({navigation}) => (
   </HomeStack.Navigator>
 );
 
+//note screen component
+const NoteStackScreen = ({navigation}) => (
+  <NoteStack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#233B9C',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        textAlign: 'center',
+      },
+    }}>
+    <NoteStack.Screen
+      name="Lite News"
+      component={Notes}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="ios-menu"
+            size={25}
+            backgroundColor="#364FB5"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+  </NoteStack.Navigator>
+);
+
 export default class App extends Component {
   render() {
     return (
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Home">
           <Drawer.Screen name="Home" component={HomeStackScreen} />
-          <Drawer.Screen name="Your Notes" component={Notes} />
+          <Drawer.Screen name="Your Notes" component={NoteStackScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
     ); //<TabScreen />;

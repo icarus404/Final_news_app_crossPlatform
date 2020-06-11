@@ -79,6 +79,8 @@ target 'test_rnative' do
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   target 'test_rnativeTests' do
     inherit! :complete
     # Pods for testing
