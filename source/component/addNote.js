@@ -24,7 +24,7 @@ export default class NoteField extends React.Component {
 
           <TextInput
             style={styles.textInput}
-            placeholder={'New note'}
+            placeholder={'  New note -- Type here'}
             placeholderTextColor={'rgba(255, 255, 255, .7)'}
             onChangeText={val => this.props.onChangeText(val)}
             value={this.props.inputValue}
@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 16,
     color: '#fff',
-    backgroundColor: '#262526',
+    backgroundColor: '#4d4f70',
   },
 });

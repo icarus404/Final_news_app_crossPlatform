@@ -13,12 +13,11 @@ import NoteField from '../component/addNote';
 
 //logic for adding and removing notes
 export default class App extends React.Component {
-  /**
-   * constructor
-   *
-   * @array   notes   all added notes.
-   * @string  note    the current note value.
-   */
+  //constructor
+
+  // @array ->  notes   all added notes.
+  // @string -> note    the current note value.
+
   constructor(props) {
     super(props);
     this.state = {

@@ -55,7 +55,7 @@ const NoteStackScreen = ({navigation}) => (
       },
     }}>
     <NoteStack.Screen
-      name="Lite News"
+      name="Your Notes"
       component={Notes}
       options={{
         headerLeft: () => (

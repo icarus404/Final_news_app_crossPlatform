@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 //importing libraries
 import React, {Component} from 'react';
 import {Modal, Share} from 'react-native';
@@ -13,7 +14,11 @@ import {
   Button,
 } from 'native-base';
 import {WebView} from 'react-native-webview';
-//import Share from 'react-native-share';  
+import {YellowBox} from 'react-native';
+
+YellowBox.ignoreWarnings([
+  'VirtualizedLists should never be nested', // TODO: Remove when fixed
+]);
 
 // creating a new component
 class ModalComponent extends Component {
